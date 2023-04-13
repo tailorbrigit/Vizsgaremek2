@@ -30,8 +30,22 @@ const loginUser = () => {
         console.log(result);
             emailLog.value = '';
             passwordLog.value = '';
-            window.location.href = 'index.html';
-            alert("Bejelentkezés sikeres!");
+
+            var userRole = result.role;
+            localStorage.setItem('userRole', userRole);
+
+            if (userRole === 1) {
+                window.location.href = 'admin/admin.html';
+                alert("Bejelentkezés sikeres!");      
+            }
+            else if (userRole === 0) {
+                window.location.href = 'user/profile.html';
+                alert("Bejelentkezés sikeres!");
+            }
+            else{
+                window.location.href = 'login.html';
+                alert("Bejelentkezés sikertelen!");
+            }
     })
     .catch(err => {
         console.log(err);
