@@ -93,8 +93,9 @@
                             </div>
                             <a href="contact.html" class="nav-item nav-link">Kapcsolat</a>
                             <a href="register.html"class="nav-item nav-link">Regisztráció</a>
+                            <a href="login.html"class="nav-item nav-link">Bejelentkezés</a>
                         </div>
-                        <a href="" class="btn btn-primary py-md-3 px-md-5 d-none d-lg-block">Csatlakozz hozzánk!</a>
+                        <a href="register.html" class="btn btn-primary py-md-3 px-md-5 d-none d-lg-block">Csatlakozz hozzánk!</a>
                     </div>
                 </nav>
             </div>
@@ -105,8 +106,8 @@
         <div class="row py-5">
             <div class="col-12 text-center">
                 <h1 class="display-2 text-uppercase text-white mb-md-4">Regisztráció</h1>
-                <a href="" class="btn btn-primary py-md-3 px-md-5 me-3">Kezdőlap</a>
-                <a href="" class="btn btn-light py-md-3 px-md-5">Edzőink</a>
+                <a href="index.html" class="btn btn-primary py-md-3 px-md-5 me-3">Kezdőlap</a>
+                <a href="team.html" class="btn btn-light py-md-3 px-md-5">Edzőink</a>
             </div>
         </div>
     </div>
@@ -114,41 +115,38 @@
     <div class="form">
         <div align="center">
             <div style="width:60%">
-                <form method="POST" action="register.php">
-                    <h3>Regisztráció</h3><br>
-                    
-                    <div class="form-group">																					<!-- Név -->
-                        <label class="col-sm-3 control-label">Név: </label>
-                        <div class="col-sm-9">
-                            <input type="text" placeholder="Név" class="form-control" id="name" name="name" required>
-                        </div>
+                
+                <h3>Regisztráció</h3><br>
+                
+                <div class="form-group">																					<!-- Név -->
+                    <label class="col-sm-3 control-label">Név: </label>
+                    <div class="col-sm-9">
+                        <input type="text" placeholder="Név" class="form-control" id="name" name="name" required>
                     </div>
-                    <br>
-                    <div class="form-group">																					<!-- E-mail -->
-                        <label class="col-sm-3 control-label">E-mail: </label>
-                        <div class="col-sm-9">
-                            <input type="email" placeholder="E-mail" class="form-control" id="email" name="email" required>
-                        </div>
+                </div>
+                <br>
+                <div class="form-group">																					<!-- E-mail -->
+                    <label class="col-sm-3 control-label">E-mail: </label>
+                    <div class="col-sm-9">
+                        <input type="email" placeholder="E-mail" class="form-control" id="email" name="email" required>
                     </div>
-                    <br>
-                    <div class="form-group">																					<!-- Jelszó & ismétlés -->
-                        <label class="col-sm-3 control-label">Jelszó: </label>
-                        <div class="col-sm-9">
-                            <input type="password" placeholder="Jelszó" class="form-control" id="password" name="password" required>
-                        </div>
+                </div>
+                <br>
+                <div class="form-group">																					<!-- Jelszó & ismétlés -->
+                    <label class="col-sm-3 control-label">Jelszó: </label>
+                    <div class="col-sm-9">
+                        <input type="password" placeholder="Jelszó" class="form-control" id="password" name="password" required>
                     </div>
-                    <br>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">Jelszó ismétlése: </label>
-                        <div class="col-sm-9">
-                            <input type="password" placeholder="Jelszó" class="form-control" id="confirm_password" name="confirm_password" required>
-                        </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Jelszó ismétlése: </label>
+                    <div class="col-sm-9">
+                        <input type="password" placeholder="Jelszó" class="form-control" id="confirm_password" name="confirm_password" required>
                     </div>
-                    <br>
-                    <button type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary" style="width:60%; text-align:center;" >Regisztráció</button>
-            
-                </form> 
-        
+                </div>
+                <br>
+                <button type="button" id="registerButton" class="btn btn-primary" style="width:60%; text-align:center;" >Regisztráció</button>
             </div>
         </div>
     </div>
@@ -251,6 +249,7 @@
 <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
 <!-- Template Javascript -->
+<script src="js/register.js"></script>
 <script src="js/main.js"></script>
 </body>
 

@@ -1,0 +1,1 @@
+## Edzőtermi nyilvántartó backend része
