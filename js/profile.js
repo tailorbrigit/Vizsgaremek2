@@ -3,12 +3,17 @@ var token = localStorage.getItem("token");
 var name = localStorage.getItem("name");
 var email = localStorage.getItem("email");
 
-const edited_id = document.querySelector("#edited_id");
-const edited_name = document.querySelector("#edited_name");
-const edited_phone = document.querySelector("#edited_phone");
-const edited_birth = document.querySelector("#edited_birth");
-const edited_address = document.querySelector("#edited_address");
-const saveButton = document.querySelector("#saveButton");
+const nameInput = document.getElementById("name");
+const phoneInput = document.getElementById("phone");
+const birthInput = document.getElementById("birth");
+const addressInput = document.getElementById("address");
+const emailInput = document.getElementById("email");
+
+const nameInput2 = document.getElementById("edited_name");
+const phoneInput2 = document.getElementById("edited_phone");
+const birthInput2 = document.getElementById("edited_birth");
+const addressInput2 = document.getElementById("edited_address");
+
 
 const server = 'http://localhost:8000/api/';
 
@@ -17,12 +22,7 @@ const server = 'http://localhost:8000/api/';
 })();
 
 function UserProfile(){
-    const nameInput = document.getElementById("name");
-    const phoneInput = document.getElementById("phone");
-    const birthInput = document.getElementById("birth");
-    const addressInput = document.getElementById("address");
-    const emailInput = document.getElementById("email");
-    
+
     let endpoint = "user/" + id;
     let url = server + endpoint;
     
@@ -39,6 +39,11 @@ function UserProfile(){
         birthInput.value = result.birth;
         addressInput.value = result.address;
         emailInput.value = result.email;
+
+        nameInput2.value = result.name;
+        phoneInput2.value = result.phone;
+        birthInput2.value = result.birth;
+        addressInput2.value = result.address;
         console.log("beírva");
       })
       .catch(error => {
@@ -53,29 +58,33 @@ saveButton.addEventListener('click', () => {
 });
 
 function updateProfile() {
-  let endpoint = 'user/' + edited_id.value;
+  let endpoint = 'user/' + id;
   let url = server + endpoint;
   
   fetch(url, {
     method: 'put',
     body: JSON.stringify({
-        id: edited_id.value,
-        name: edited_name.value,
-        phone: edited_phone.value,
-        birth: edited_birth.value,
-        address: edited_address.value
+        id: id,
+        name: nameInput2.value,
+        phone: phoneInput2.value,
+        birth: birthInput2.value,
+        address: addressInput2.value
       }),
       headers: {
-        "Content-Type": "application/json;charset=UTF-8",
+        "Content-Type": "application/json; charset=UTF-8",
         "Authorization": "Bearer " + token,
       }
     })
     .then(response => response.json())
     .then(result => {
       console.log("frissítve");
+      alert("Profilod sikeresen frissítve!");
+      location.reload();
   })
   .catch(error => {
       console.log('Hiba! A frissítés sikertelen!');
+      alert("Profilodat nem sikerült frissíteni!");
+      location.reload();
       console.log(error);
   });
 }

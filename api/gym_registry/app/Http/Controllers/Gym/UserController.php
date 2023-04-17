@@ -55,7 +55,7 @@ class UserController extends BaseController
             return $this->sendError($validator->errors());
         }
 
-        if(Auth::check() && Auth::user()->role == true){
+        if(Auth::check()){
             $input = User::find($id);
         }
 

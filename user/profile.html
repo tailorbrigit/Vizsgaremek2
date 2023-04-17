@@ -163,16 +163,16 @@
                       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">Szerkesztés</button>
                       <h1>Profil adatok</h1>
                       <label for="name">Név:</label>
-                      <input type="text" id="name" name="name">
+                      <input type="text" id="name" name="name" readonly>
                       <br>
                       <label for="phone">Telefon:</label>
-                      <input type="text" id="phone" name="phone">
+                      <input type="text" id="phone" name="phone" readonly>
                       <br>
                       <label for="birth">Születési dátum:</label>
-                      <input type="date" id="birth" name="birth">
+                      <input type="date" id="birth" name="birth" readonly>
                       <br>
                       <label for="address">Utca, házszám:</label>
-                      <input type="text" id="address" name="address">
+                      <input type="text" id="address" name="address" readonly>
                       <br>
                       <label for="email">Email:</label>
                       <input type="text" id="email" name="email" readonly>
@@ -188,10 +188,6 @@
                                 </div>
                               <div class="modal-body">
                                   <form>
-                                    <div class="mb-3">
-                                      <label for="edited_id" class="form-label">Id</label>
-                                      <input type="text" class="form-control" id="edited_id" readonly>
-                                    </div>
                                     <div class="mb-3">
                                       <label for="edited_name" class="form-label">Név:</label>
                                       <input type="text" class="form-control" id="edited_name">
