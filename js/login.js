@@ -1,7 +1,5 @@
-var jwt = localStorage.getItem("jwt");
-
-const emailLog = document.querySelector('#email').value;
-const passwordLog = document.querySelector('#password').value;
+const emailLog = document.querySelector('#email');
+const passwordLog = document.querySelector('#password');
 
 const loginButton = document.querySelector('#loginButton');
 
@@ -35,9 +33,10 @@ const loginUser = () => {
         
             var userRole = result.role;
             localStorage.setItem('userRole', userRole);
-            
-            localStorage.setItem("jwt", result.token);
 
+            var token = result.token;
+            localStorage.setItem('token',token);
+            console.log(token);
 
             if (userRole === 1) {
                 window.location.href = 'admin/admin.html';

@@ -1,5 +1,5 @@
-var jwt = localStorage.getItem("jwt");
-if (jwt == null) {
+var token = localStorage.getItem("token");
+if (token == null) {
   window.location.href = "./login.html";
 }
 
@@ -19,7 +19,6 @@ passtypeTable.appendChild(tbody);
 const server = 'http://localhost:8000/api/';
 
 (()=>{
-    console.log("kívül");
     getPasstypes();
 })();
 
@@ -29,8 +28,6 @@ function getPasstypes() {
     fetch(url)
     .then( response => response.json())
     .then( result => {
-        console.log(result[0].type);
-        console.log(result[0].price);
         renderTable(result);
     })
     .catch(error => {
@@ -71,14 +68,14 @@ function renderTable(passtypes) {
 function makeDelButton(id) {
     let delBtn = document.createElement('button');
     delBtn.classList.add('btn');
-    delBtn.classList.add('btn-info');
+    delBtn.classList.add('btn-danger');
     
     delBtn.innerHTML = '<i class="bi bi-trash-fill"></i>';
     
     delBtn.addEventListener('click', ()=> {
         let answer = confirm('Biztosan törlöd?');
         if (answer) {
-            deletepasstype(id);
+            deletePasstype(id);
             actualTr = delBtn.parentElement.parentElement;
             actualTr.parentNode.removeChild(actualTr);
         }        
@@ -98,22 +95,20 @@ function addPasstype() {
         type: passtypeType.value,
         price: passtypePrice.value
     };
-
+    
     fetch(url, {
         method: 'post',
         body: JSON.stringify(passtype),
         headers: {
             "Content-Type": "application/json;charset=UTF-8",
-            "Authorization": "Bearer" + jwt
+            "Authorization": "Bearer " + token,
         }
     })
     .then(response => response.json())
     .then(result => {
-        console.log(result);
         passtypeType.value = '';
         passtypePrice.value = '';
         addPasstypeToTable(result);
-        console.log(jwt);
     });
 
 }
@@ -124,41 +119,49 @@ function addPasstypeToTable(passtype) {
     let tdType = document.createElement('td');
     let tdPrice = document.createElement('td');
     let tdButton = document.createElement('td');
- 
-    tdId.textContent = passtype.id;
-    tdType.textContent = passtype.type;
-    tdPrice.textContent = passtype.price;
+    
+    let delBtn = makeDelButton(passtype.id);
+    let editBtn = makeEditButton(passtype);
 
     tr.appendChild(tdId);
     tr.appendChild(tdType);
     tr.appendChild(tdPrice);
     tr.appendChild(tdButton);
-
-    let delButton = makeDelButton(passtype.id);
-    let editButton = makeEditButton(passtype);
-    tdButton.appendChild(delButton);
-    tdButton.appendChild(editButton);
-
+    
+    tdButton.appendChild(delBtn);
+    tdButton.appendChild(editBtn);
+    
     tbody.appendChild(tr);
+
+    tdId.textContent = passtype.id;
+    tdType.textContent = passtype.type;
+    tdPrice.textContent = passtype.price;
 }
 
-function deletepasstype(id) {
-    console.log(id);
+function deletePasstype(id) {
     let endpoint = 'passtype/' + id;
     let url = server + endpoint;
     fetch(url, {
-        method: 'delete'
+        method: 'delete',
+        headers: {
+            "Content-Type": "application/json;charset=UTF-8",
+            "Authorization": "Bearer " + token,
+        }
     })
     .then(response => response.json())
     .then(result => {
-        console.log(result);
+        console.log('Törölve');
+    })
+    .catch(error => {
+        console.log('Hiba! A törlés sikertelen!');
+        console.log(error);
     });
 }
 
 function makeEditButton(passtype) {
     let editBtn = document.createElement('button');
     editBtn.classList.add('btn');
-    editBtn.classList.add('btn-info');
+    editBtn.classList.add('btn-warning');
     editBtn.classList.add('ms-1');
 
     editBtn.setAttribute('data-priceid', passtype.id);
@@ -169,9 +172,6 @@ function makeEditButton(passtype) {
     editBtn.innerHTML = '<i class="bi bi-pencil-fill"></i>';
 
     editBtn.addEventListener('click', ()=> {
-        console.log('Szerkesztés működik');
-        console.log(passtype.id);
-        console.log(passtype.price);
         edited_id.value = editBtn.dataset.priceid; 
         edited_price.value = editBtn.dataset.edited_price;
         actualTr = editBtn.parentElement.parentElement;
@@ -183,18 +183,10 @@ saveButton.addEventListener('click', () => {
     console.log('Mentés...');
     actualTr.childNodes[2].textContent = edited_price.value;
     
-
-    actualTr
-    .childNodes[2]
-    .lastChild
-    .setAttribute('data-edited_price', edited_price.value);
-
     updatepasstype();
 });
 
 function updatepasstype() {
-    console.log('REST API-ba mentés');
-
     let endpoint = 'passtype/'+ edited_id.value;
     let url = server + endpoint;
 
@@ -205,12 +197,16 @@ function updatepasstype() {
             price: edited_price.value
         }),
         headers: {
-            "Content-Type": "application/json"
-
+            "Content-Type": "application/json;charset=UTF-8",
+            "Authorization": "Bearer " + token,
         }
     })
     .then(response => response.json())
     .then(result => {
-        console.log(result);
+        console.log("frissítve");
+    })
+    .catch(error => {
+        console.log('Hiba! A frissítés sikertelen!');
+        console.log(error);
     });
 }
