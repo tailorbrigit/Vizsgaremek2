@@ -11,7 +11,7 @@ class Discount extends Model
     
     protected $fillable = [
         'discount_type',
-        'discount(%)'
+        'percent'
     ];
 
     public $timestamps = false;

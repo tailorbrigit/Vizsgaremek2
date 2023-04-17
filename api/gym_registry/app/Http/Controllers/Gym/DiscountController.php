@@ -10,17 +10,15 @@ use Validator;
 class DiscountController extends BaseController
 {
     public function indexDiscount(){
-        $this->authorize("manage-discount");
         $discounts = Discount::all();
         return $this->sendResponse($discounts);
     }
 
     public function createDiscount(Request $request){
-        $this->authorize("manage-discount");
         $discount = $request->all();
         $validator = Validator::make($discount,[
             'discount_type'=> "required",
-            'discount(%)'=> "required",
+            'percent'=> "required",
         ]);
         if($validator->fails()){
             return $this->sendError($validator,"Érvénytelen bemenet");
@@ -31,10 +29,9 @@ class DiscountController extends BaseController
     }
 
     public function updateDiscount(Request $request, $id){
-        $this->authorize("manage-discount");
         $discount = $request->all();
         $validator = Validator::make($discount,[
-            'discount(%)'=> "required",
+            'percent'=> "required",
         ]);
 
         if($validator->fails()){
@@ -47,7 +44,6 @@ class DiscountController extends BaseController
     }
 
     public function deleteDiscount($id){
-        $this->authorize("manage-discount");
         Discount::destroy($id);
         return $this->sendResponse("Kedvezmény törölve");
     }

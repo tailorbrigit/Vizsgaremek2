@@ -22,7 +22,6 @@ Route::group(["middleware" => ["auth:sanctum"]], function() {
     Route::delete("/admin/user/{id}", [UserController::class, "destroy"]);
     Route::post("/admin/user",[UserController::class,"addAdmin"]);
     
-    Route::get("/discounts",[DiscountController::class,"indexDiscount"]);
     Route::post("/discount",[DiscountController::class,"createDiscount"]);
     Route::put("/discount/{id}",[DiscountController::class,"updateDiscount"]);
     Route::delete("/discount/{id}",[DiscountController::class,"deleteDiscount"]);
@@ -45,5 +44,5 @@ Route::post("/login",[AuthController::class,"signIn"]);
 Route::get("/users",[UserController::class, "index"]);
 Route::get("/user/{id}",[UserController::class, "show"]);
 
-//Passtypes
+Route::get("/discounts",[DiscountController::class,"indexDiscount"]);
 Route::get("/passtypes",[PasstypeController::class,"indexPassType"]);
