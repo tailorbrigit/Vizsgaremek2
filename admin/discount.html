@@ -2,9 +2,7 @@
     if (localStorage.getItem('userRole') !== '1') {
         window.location.href = '../login.html';
     }
-    else{
-        window.location.href = 'discount.html';
-    }
+
 </script>
 
 <!DOCTYPE html>
@@ -95,6 +93,7 @@
                             <a href="prices.html" class="nav-item nav-link">Áraink</a>
                             <a href="discount.html" class="nav-item nav-link active">Kedvezmények</a>
                             <a href="profile.html" class="nav-item nav-link">Profil</a>
+                            <a href="#" class="nav-item nav-link" onclick="logout()">Kijelentkezés</a>
                         </div>
                     </div>
                 </nav>
@@ -158,8 +157,8 @@
                               </div>
                         
                           <!-- edit Modal -->
-                          <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
+                        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
                                   <h1 class="modal-title fs-5" id="exampleModalLabel">Kedvezmény módosítása</h1>
@@ -183,7 +182,7 @@
                                 </div>
                             </div>
                         </div>
-                        </div>                        
+                        </div>
                     </div>
                     </div>
                 </div>
@@ -283,6 +282,7 @@
     <!-- Template Javascript -->
     <script src="../js/main.js"></script>
     <script src="../js/admin_discount.js"></script>
+    <script src="../js/logout.js"></script>
 </body>
 
 </html>

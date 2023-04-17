@@ -34,7 +34,9 @@ class AuthController extends BaseController
     public function signIn(Request $request){
         if(Auth::attempt(["email"=>$request->email,"password"=>$request->password])){
             $authUser = Auth::user();
+            $success["id"] = $authUser->id;
             $success["name"] = $authUser->name;
+            $success["email"] = $authUser->email;
             $success["role"] = $authUser->role;
 
             if($authUser->role == 1){

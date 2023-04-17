@@ -48,8 +48,7 @@ class UserController extends BaseController
             "name" => "required",
             "phone" => "required",
             "birth" => "required",
-            "address" => "required",
-            "city_regionId" => "required"
+            "address" => "required"
         ]);
 
         if($validator->fails()){
@@ -57,10 +56,10 @@ class UserController extends BaseController
         }
 
         if(Auth::check() && Auth::user()->role == true){
-            $user = User::find($id);
+            $input = User::find($id);
         }
 
-        $user->update($request->all());
+        $input->update($request->all());
 
         return $this->sendResponse(new UserResource($user),"Profil frissítve");
     }

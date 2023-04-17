@@ -2,9 +2,7 @@
     if (localStorage.getItem('userRole') !== '1') {
         window.location.href = '../login.html';
     }
-    else{
-        window.location.href = 'prices.html';
-    }
+
 </script>
 
 <!DOCTYPE html>
@@ -95,6 +93,7 @@
                             <a href="prices.html" class="nav-item nav-link active">Áraink</a>
                             <a href="discount.html" class="nav-item nav-link">Kedvezmények</a>
                             <a href="profile.html" class="nav-item nav-link">Profil</a>
+                            <a href="#" class="nav-item nav-link" onclick="logout()">Kijelentkezés</a>
                         </div>
                     </div>
                 </nav>
@@ -283,6 +282,7 @@
     <!-- Template Javascript -->
     <script src="../js/main.js"></script>
     <script src="../js/admin_price.js"></script>
+    <script src="../js/logout.js"></script>
 </body>
 
 </html>

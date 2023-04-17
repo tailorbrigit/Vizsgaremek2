@@ -30,26 +30,34 @@ const loginUser = () => {
         console.log(result);
         emailLog.value = '';
         passwordLog.value = '';
-        
-            var userRole = result.role;
-            localStorage.setItem('userRole', userRole);
+            
+        var id = result.id;
+        localStorage.setItem('id',id);
 
-            var token = result.token;
-            localStorage.setItem('token',token);
-            console.log(token);
+        var name = result.name;
+        localStorage.setItem('name',name);
 
-            if (userRole === 1) {
-                window.location.href = 'admin/admin.html';
-                alert("Bejelentkezés sikeres!");    
-            }
-            else if (userRole === 0) {
-                window.location.href = 'user/profile.html';
-                alert("Bejelentkezés sikeres!");
-            }
-            else{
-                window.location.href = 'login.html';
-                alert("Bejelentkezés sikertelen!");
-            }
+        var userRole = result.role;
+        localStorage.setItem('userRole', userRole);
+
+        var token = result.token;
+        localStorage.setItem('token',token);
+
+        var email = result.email;
+        localStorage.setItem('email',email);
+
+        if (userRole === 1) {
+            window.location.href = 'admin/admin.html';
+            alert("Bejelentkezés sikeres!");    
+        }
+        else if (userRole === 0) {
+            window.location.href = 'user/profile.html';
+            alert("Bejelentkezés sikeres!");
+        }
+        else{
+            window.location.href = 'login.html';
+            alert("Bejelentkezés sikertelen!");
+        }
     })
     .catch(err => {
         console.log(err);

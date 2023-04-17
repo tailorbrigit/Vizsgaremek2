@@ -2,9 +2,7 @@
     if (localStorage.getItem('userRole') !== '1') {
         window.location.href = '../login.html';
     }
-    else{
-        window.location.href = 'profile.html';
-    }
+
 </script>
 
 <!DOCTYPE html>
@@ -37,6 +35,32 @@
 
     <!-- Template Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
+    <style>
+        .profile-info {
+          display: flex;
+          flex-direction: column;
+          width: 300px;
+          margin: 0 auto;
+        }
+    
+        .profile-info label,
+        .profile-info input {
+          margin: 5px 0;
+        }
+    
+        .profile-info label {
+          font-weight: bold;
+        }
+    
+        .profile-info input[readonly] {
+          background-color: #f8f8f8;
+          border: none;
+        }
+    
+        .profile-info input[type="submit"] {
+          margin-top: 10px;
+        }
+      </style>
 </head>
 
 <body>
@@ -95,6 +119,7 @@
                             <a href="prices.html" class="nav-item nav-link">Áraink</a>
                             <a href="discount.html" class="nav-item nav-link">Kedvezmények</a>
                             <a href="profile.html" class="nav-item nav-link active">Profil</a>
+                            <a href="#" class="nav-item nav-link" onclick="logout()">Kijelentkezés</a>
                         </div>
                     </div>
                 </nav>
@@ -122,7 +147,64 @@
         <div class="row g-0">
             <div class="col-lg-6" style="min-height: 500px;">
                 <div class="position-relative h-100">
-                    
+                    <div class="profile-info">
+                      <h1>Profil adatok</h1>
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">Szerkesztés</button>
+                      <label for="name">Név:</label>
+                      <input type="text" id="name" name="name" readonly>
+                      <br>
+                      <label for="phone">Telefon:</label>
+                      <input type="text" id="phone" name="phone" readonly>
+                      <br>
+                      <label for="birth">Születési dátum:</label>
+                      <input type="date" id="birth" name="birth" readonly>
+                      <br>
+                      <label for="address">Utca, házszám:</label>
+                      <input type="text" id="address" name="address" readonly>
+                      <br>
+                      <label for="email">Email:</label>
+                      <input type="text" id="email" name="email" readonly>
+                    </div>
+
+                    <!-- edit Modal -->
+                    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Adatok módosítása</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                            <div class="modal-body">
+                                <form>
+                                  <div class="mb-3">
+                                    <label for="edited_id" class="form-label">Id</label>
+                                    <input type="text" class="form-control" id="edited_id" readonly>
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="edited_name" class="form-label">Név:</label>
+                                    <input type="text" class="form-control" id="edited_name">
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="edited_phone" class="form-label">Telefon:</label>
+                                    <input type="text" class="form-control" id="edited_phone">
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="edited_birth" class="form-label">Születési dátum:</label>
+                                    <input type="date" class="form-control" id="edited_birth">
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="edited_address" class="form-label">Utca, házszám:</label>
+                                    <input type="text" class="form-control" id="edited_address">
+                                  </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezár</button>
+                                <button type="button" class="btn btn-primary" id="saveButton" data-bs-dismiss="modal">Ment</button>
+                            </div>
+                            </div>
+                      </div>
+                      </div>                   
                 </div>
             </div>
         </div>
@@ -220,6 +302,8 @@
 
     <!-- Template Javascript -->
     <script src="../js/main.js"></script>
+    <script src="../js/profile.js"></script>
+    <script src="../js/logout.js"></script>
 </body>
 
 </html>
