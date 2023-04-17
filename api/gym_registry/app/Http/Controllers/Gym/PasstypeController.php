@@ -9,13 +9,12 @@ use Validator;
 
 class PasstypeController extends BaseController
 {
-    public function indexPassType(){
+    public function indexPassType(){  
         $passtype = Passtype::all();
         return $this->sendResponse($passtype);
     }
 
     public function createPassType(Request $request){
-        $this->authorize("manage-passtype");
         $passtype = $request->all();
         $validator = Validator::make($passtype,[
             "type" => "required",
@@ -32,7 +31,6 @@ class PasstypeController extends BaseController
     }
 
     public function updatePassType(Request $request,$id){
-        $this->authorize("manage-passtype");
         $type = $request->all();
         $validator = Validator::make($type,[
             "price" => "required"
@@ -48,7 +46,6 @@ class PasstypeController extends BaseController
     }
 
     public function deletePassType($id){
-        $this->authorize("manage-passtype");
         Passtype::destroy($id);
         return $this->sendResponse("Típus törölve");
     }

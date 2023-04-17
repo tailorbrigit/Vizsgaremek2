@@ -1,5 +1,7 @@
-const emailLog = document.querySelector('#email');
-const passwordLog = document.querySelector('#password');
+var jwt = localStorage.getItem("jwt");
+
+const emailLog = document.querySelector('#email').value;
+const passwordLog = document.querySelector('#password').value;
 
 const loginButton = document.querySelector('#loginButton');
 
@@ -28,15 +30,18 @@ const loginUser = () => {
     .then(response => response.json())
     .then(result => {
         console.log(result);
-            emailLog.value = '';
-            passwordLog.value = '';
-
+        emailLog.value = '';
+        passwordLog.value = '';
+        
             var userRole = result.role;
             localStorage.setItem('userRole', userRole);
+            
+            localStorage.setItem("jwt", result.token);
+
 
             if (userRole === 1) {
                 window.location.href = 'admin/admin.html';
-                alert("Bejelentkezés sikeres!");      
+                alert("Bejelentkezés sikeres!");    
             }
             else if (userRole === 0) {
                 window.location.href = 'user/profile.html';

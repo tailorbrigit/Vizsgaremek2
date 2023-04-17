@@ -1,14 +1,5 @@
-<script>
-    if (localStorage.getItem('userRole') !== '1') {
-        window.location.href = '../login.html';
-    }
-    else{
-        window.location.href = 'team.html';
-    }
-</script>
-
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -57,7 +48,7 @@
                         </div>
                         <div class="h-100 d-inline-flex align-items-center py-2">
                             <i class="fa fa-phone-alt text-primary me-2"></i>
-                            <h6 class="mb-0">0630 123 4567</h6>
+                            <h6 class="mb-0">06 30 345 6789</h6>
                         </div>
                     </div>
                     <div class="col-lg-5 px-5 text-end">
@@ -91,8 +82,8 @@
                         <div class="navbar-nav mr-auto py-0">
                             <a href="index.html" class="nav-item nav-link">Kezdőlap</a>
                             <a href="about.html" class="nav-item nav-link">Rólunk</a>
-                            <a href="class.html" class="nav-item nav-link">Csoportok</a>
-                            <a href="team.html" class="nav-item nav-link active">Edzőink</a>
+                            <a href="class.html" class="nav-item nav-link">Osztály</a>
+                            <a href="team.html" class="nav-item nav-link">Edzőink</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Oldalak</a>
                                 <div class="dropdown-menu rounded-0 m-0">
@@ -101,7 +92,7 @@
                                     <a href="testimonial.html" class="dropdown-item">Ajánlólevél</a>
                                 </div>
                             </div>
-                            <a href="contact.html" class="nav-item nav-link">Kapcsolat</a>
+                            <a href="contact.html" class="nav-item nav-link active">Kapcsolat</a>
                             <a href="prices.html" class="nav-item nav-link">Áraink</a>
                             <a href="profile.html" class="nav-item nav-link">Profil</a>
                         </div>
@@ -117,134 +108,84 @@
     <div class="container-fluid bg-primary p-5 bg-hero mb-5">
         <div class="row py-5">
             <div class="col-12 text-center">
-                <h1 class="display-2 text-uppercase text-white mb-md-4">Edzőink</h1>
+                <h1 class="display-2 text-uppercase text-white mb-md-4">Kapcsolat</h1>
                 <a href="index.html" class="btn btn-primary py-md-3 px-md-5 me-3">Kezdőlap</a>
-                <a href="team.html" class="btn btn-light py-md-3 px-md-5">Edzőink</a>
+                <a href="contact.html" class="btn btn-light py-md-3 px-md-5">Kapcsolat</a>
             </div>
         </div>
     </div>
     <!-- Hero End -->
 
 
-    <!-- Team Start -->
+    <!-- Contact Start -->
     <div class="container-fluid p-5">
         <div class="mb-5 text-center">
-            <h5 class="text-primary text-uppercase">A csapat</h5>
-            <h1 class="display-3 text-uppercase mb-0">Edzőink</h1>
+            <h5 class="text-primary text-uppercase">Csatlakozz hozzánk!</h5>
+            <h1 class="display-3 text-uppercase mb-0">Kattints!</h1>
         </div>
-        <div class="row g-5">
-            <div class="col-lg-4 col-md-6">
-                <div class="team-item position-relative">
-                    <div class="position-relative overflow-hidden rounded">
-                        <img class="img-fluid w-100" src="img/team-1.jpg" alt="">
-                        <div class="team-overlay">
-                            <div class="d-flex align-items-center justify-content-start">
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
+        <div class="row g-5 mb-5">
+            <div class="col-lg-4">
+                <div class="d-flex flex-column align-items-center bg-dark rounded text-center py-5 px-3">
+                    <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fa fa-map-marker-alt fs-4 text-white"></i>
                     </div>
-                    <div class="position-absolute start-0 bottom-0 w-100 rounded-bottom text-center p-4" style="background: rgba(34, 36, 41, .9);">
-                        <h5 class="text-uppercase text-light">Váradi Dominika</h5>
-                        <p class="text-uppercase text-secondary m-0">Edző</p>
-                    </div>
+                    <h5 class="text-uppercase text-primary">Látogass meg minket!</h5>
+                    <p class="text-secondary mb-0">1143, Budapest</p>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="team-item position-relative">
-                    <div class="position-relative overflow-hidden rounded">
-                        <img class="img-fluid w-100" src="img/team-2.jpg" alt="">
-                        <div class="team-overlay">
-                            <div class="d-flex align-items-center justify-content-start">
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
+            <div class="col-lg-4">
+                <div class="d-flex flex-column align-items-center bg-dark rounded text-center py-5 px-3">
+                    <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fa fa-envelope fs-4 text-white"></i>
                     </div>
-                    <div class="position-absolute start-0 bottom-0 w-100 rounded-bottom text-center p-4" style="background: rgba(34, 36, 41, .9);">
-                        <h5 class="text-uppercase text-light">Nagy János</h5>
-                        <p class="text-uppercase text-secondary m-0">Edző</p>
-                    </div>
+                    <h5 class="text-uppercase text-primary">Email</h5>
+                    <p class="text-secondary mb-0">info@pelda.com</p>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="team-item position-relative">
-                    <div class="position-relative overflow-hidden rounded">
-                        <img class="img-fluid w-100" src="img/team-3.jpg" alt="">
-                        <div class="team-overlay">
-                            <div class="d-flex align-items-center justify-content-start">
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
+            <div class="col-lg-4">
+                <div class="d-flex flex-column align-items-center bg-dark rounded text-center py-5 px-3">
+                    <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fa fa-phone fs-4 text-white"></i>
                     </div>
-                    <div class="position-absolute start-0 bottom-0 w-100 rounded-bottom text-center p-4" style="background: rgba(34, 36, 41, .9);">
-                        <h5 class="text-uppercase text-light">Kiss Ádám</h5>
-                        <p class="text-uppercase text-secondary m-0">Edző</p>
-                    </div>
+                    <h5 class="text-uppercase text-primary">Hívjon minket!</h5>
+                    <p class="text-secondary mb-0">06 30 345 6789</p>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="team-item position-relative">
-                    <div class="position-relative overflow-hidden rounded">
-                        <img class="img-fluid w-100" src="img/team-2.jpg" alt="">
-                        <div class="team-overlay">
-                            <div class="d-flex align-items-center justify-content-start">
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <div class="row g-0">
+            <div class="col-lg-6">
+                <div class="bg-dark p-5">
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <input type="text" class="form-control bg-light border-0 px-4" placeholder="Your Name" style="height: 55px;">
+                            </div>
+                            <div class="col-6">
+                                <input type="email" class="form-control bg-light border-0 px-4" placeholder="Your Email" style="height: 55px;">
+                            </div>
+                            <div class="col-12">
+                                <input type="text" class="form-control bg-light border-0 px-4" placeholder="Subject" style="height: 55px;">
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control bg-light border-0 px-4 py-3" rows="4" placeholder="Message"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Küldjön üzenetet!</button>
                             </div>
                         </div>
-                    </div>
-                    <div class="position-absolute start-0 bottom-0 w-100 rounded-bottom text-center p-4" style="background: rgba(34, 36, 41, .9);">
-                        <h5 class="text-uppercase text-light">Váradi Dominika</h5>
-                        <p class="text-uppercase text-secondary m-0">Edző</p>
-                    </div>
+                    </form>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="team-item position-relative">
-                    <div class="position-relative overflow-hidden rounded">
-                        <img class="img-fluid w-100" src="img/team-3.jpg" alt="">
-                        <div class="team-overlay">
-                            <div class="d-flex align-items-center justify-content-start">
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="position-absolute start-0 bottom-0 w-100 rounded-bottom text-center p-4" style="background: rgba(34, 36, 41, .9);">
-                        <h5 class="text-uppercase text-light">Nagy János</h5>
-                        <p class="text-uppercase text-secondary m-0">Edző</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="team-item position-relative">
-                    <div class="position-relative overflow-hidden rounded">
-                        <img class="img-fluid w-100" src="img/team-1.jpg" alt="">
-                        <div class="team-overlay">
-                            <div class="d-flex align-items-center justify-content-start">
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-light btn-square rounded-circle mx-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="position-absolute start-0 bottom-0 w-100 rounded-bottom text-center p-4" style="background: rgba(34, 36, 41, .9);">
-                        <h5 class="text-uppercase text-light">Kiss Ádám</h5>
-                        <p class="text-uppercase text-secondary m-0">Edző</p>
-                    </div>
-                </div>
+            <div class="col-lg-6">
+                <iframe class="w-100"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
+                    frameborder="0" style="height: 457px; border:0;" allowfullscreen="" aria-hidden="false"
+                    tabindex="0"></iframe>
             </div>
         </div>
     </div>
-    <!-- Team End -->
-    
+    <!-- Contact End -->
+
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-secondary px-5 mt-5">
@@ -252,7 +193,7 @@
             <div class="col-lg-8 col-md-6">
                 <div class="row gx-5">
                     <div class="col-lg-4 col-md-12 pt-5 mb-5">
-                        <h4 class="text-uppercase text-light mb-4">Kontakt</h4>
+                        <h4 class="text-uppercase text-light mb-4">Kattints</h4>
                         <div class="d-flex mb-2">
                             <i class="bi bi-geo-alt text-primary me-2"></i>
                             <p class="mb-0">1143, Budapest</p>
@@ -263,7 +204,7 @@
                         </div>
                         <div class="d-flex mb-2">
                             <i class="bi bi-telephone text-primary me-2"></i>
-                            <p class="mb-0">0630 123 45670</p>
+                            <p class="mb-0">06 30 1236</p>
                         </div>
                         <div class="d-flex mt-4">
                             <a class="btn btn-primary btn-square rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
@@ -273,25 +214,27 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
-                        <h4 class="text-uppercase text-light mb-4">Gyors linkek</h4>
+                        <h4 class="text-uppercase text-light mb-4">Link</h4>
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-secondary mb-2" href="index.html"><i class="bi bi-arrow-right text-primary me-2"></i>Kezdőlap</a>
                             <a class="text-secondary mb-2" href="about.html"><i class="bi bi-arrow-right text-primary me-2"></i>Rólunk</a>
-                            <a class="text-secondary mb-2" href="class.html"><i class="bi bi-arrow-right text-primary me-2"></i>Csoportos óráink</a>
+                            <a class="text-secondary mb-2" href="class.html"><i class="bi bi-arrow-right text-primary me-2"></i>Osztály</a>
                             <a class="text-secondary mb-2" href="team.html"><i class="bi bi-arrow-right text-primary me-2"></i>Edzőink</a>
-                            <a class="text-secondary mb-2" href="blog.html"><i class="bi bi-arrow-right text-primary me-2"></i>Legutóbbi blog</a>
-                            <a class="text-secondary" href="contact.html"><i class="bi bi-arrow-right text-primary me-2"></i>Lépj kapcsolatba velünk!</a>
+                            <a class="text-secondary mb-2" href="blog.html"><i class="bi bi-arrow-right text-primary me-2"></i>Blog
+                            </a>
+                            <a class="text-secondary" href="contact.html"><i class="bi bi-arrow-right text-primary me-2"></i>Vegye fel velünk a kapcsolatot!</a>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
-                        <h4 class="text-uppercase text-light mb-4">Népszerű Linkek</h4>
+                        <h4 class="text-uppercase text-light mb-4">Linkek</h4>
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-secondary mb-2" href="index.html"><i class="bi bi-arrow-right text-primary me-2"></i>Kezdőlap</a>
                             <a class="text-secondary mb-2" href="about.html"><i class="bi bi-arrow-right text-primary me-2"></i>Rólunk</a>
-                            <a class="text-secondary mb-2" href="class.html"><i class="bi bi-arrow-right text-primary me-2"></i>Csoportos óráink</a>
+                            <a class="text-secondary mb-2" href="class.html"><i class="bi bi-arrow-right text-primary me-2"></i>Osztály</a>
                             <a class="text-secondary mb-2" href="team.html"><i class="bi bi-arrow-right text-primary me-2"></i>Edzőink</a>
-                            <a class="text-secondary mb-2" href="#blog.html"><i class="bi bi-arrow-right text-primary me-2"></i>Legutóbbi blog</a>
-                            <a class="text-secondary" href="contact.html"><i class="bi bi-arrow-right text-primary me-2"></i>Lépj kapcsolatba velünk!</a>
+                            <a class="text-secondary mb-2" href="blog.html"><i class="bi bi-arrow-right text-primary me-2"></i>Blog
+                            </a>
+                            <a class="text-secondary" href="contact.html"><i class="bi bi-arrow-right text-primary me-2"></i>Vegye fel velünk a kapcsolatot!</a>
                         </div>
                     </div>
                 </div>
@@ -299,7 +242,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary p-5">
                     <h4 class="text-uppercase text-white mb-4">Újdonság</h4>
-                    <h6 class="text-uppercase text-white">Iratkozz fel az újdonságokért!</h6>
+                    <h6 class="text-uppercase text-white">Irtatkozz fel!</h6>
                     <p class="text-light">Amet justo diam dolor rebum lorem sit stet sea justo kasd</p>
                     <form action="">
                         <div class="input-group">
@@ -320,7 +263,7 @@
             </div>
             <div class="col-lg-4">
                 <div class="py-lg-4 text-center credit">
-                    <p class="text-light mb-0">Tervezte <a class="text-light fw-bold" href="https://htmlcodex.com">HTML</a></p>
+                    <p class="text-light mb-0">Tervezte: <a class="text-light fw-bold" href="https://htmlcodex.com"></a></p>
                 </div>
             </div>
         </div>

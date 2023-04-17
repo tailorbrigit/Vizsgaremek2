@@ -34,9 +34,14 @@ class AuthController extends BaseController
     public function signIn(Request $request){
         if(Auth::attempt(["email"=>$request->email,"password"=>$request->password])){
             $authUser = Auth::user();
-            $success["token"] = $authUser->createToken("MyAuthApp")->plainTextToken;
             $success["name"] = $authUser->name;
             $success["role"] = $authUser->role;
+
+            if($authUser->role == 1){
+                $success["token"] = $authUser->createToken("MyAuthApp",['admin'])->plainTextToken;
+            }else{
+                $success["token"] = $authUser->createToken("MyAuthApp",['user'])->plainTextToken;
+            }
 
             return $this->sendResponse($success, "Sikeres bejelentkezés");
         }else{
