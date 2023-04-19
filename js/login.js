@@ -27,7 +27,6 @@ const loginUser = () => {
     })
     .then(response => response.json())
     .then(result => {
-        console.log(result);
         emailLog.value = '';
         passwordLog.value = '';
             

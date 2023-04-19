@@ -176,7 +176,6 @@ function deleteAdmin(id) {
     })
     .then(response => response.json())
     .then(result => {
-        console.log('Törölve');
     })
     .catch(error => {
         console.log('Hiba! A törlés sikertelen!');

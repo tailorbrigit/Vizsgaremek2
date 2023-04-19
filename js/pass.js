@@ -11,6 +11,7 @@ var token = localStorage.getItem("token");
 //Beiratás oldalról
 //Gomb
 const buyButton = document.getElementById("buyButton");
+const editPassModalButton = document.getElementById("editPassModalButton");
 
 //Bérlet
 const typeOption = document.getElementById("type");
@@ -29,10 +30,24 @@ const endPriceInput = document.getElementById("edited_endprice");
 const startInput = document.getElementById("edited_start");
 const endInput = document.getElementById("edited_end");
 
-//Báltozók letrehozása
+//Változók letrehozása
 let discountedPrice;
 let selectedType;
 let selectedDiscount;
+
+
+//Mai dátum (yyyy-mm-dd) megadása
+//Dátum
+var date = new Date();
+//Jelenlegi hónap megadása
+var currentMonth = date.getMonth()+1;
+//Ha a jelenlegi hónap 10. hónap alatt van, akkor 0 hozzáadása
+if(currentMonth < 10){
+  var currentDate = date.getFullYear() + "-0" + (date.getMonth()+1) + "-" + date.getDate();
+}else {
+  var currentDate = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
+};
+
 
 //Automatikusan indulo funkciók
 (() => {
@@ -55,16 +70,30 @@ function getPasses() {
   .then( response => response.json())
     .then( result => {
 
+      
+
       //Passes tábla local storageba betöltés
       var passes_array = result;
       localStorage.setItem('passes_array',JSON.stringify(passes_array));
 
-      //Mai dátum (yyyy-mm-dd) megadása
-      var date = new Date();
-      var currentDate = date.getFullYear() + "-0" + (date.getMonth()+1) + "-" + date.getDate()
+      
+
+      //Ha létezik bérlete, bérlet modal gomb tiltása
+      if (result.find(item => item.userId == id && item.end >= currentDate)) {
+        editPassModalButton.hidden = true;
+        document.getElementById("passH1").innerHTML = "Aktuális bérlete";
+        document.getElementById("passHider").hidden = false;
+      } else {
+        editPassModalButton.hidden = false;
+        document.getElementById("passH1").innerHTML = "Jelenleg nincsen bérlete!";
+        document.getElementById("passHider").hidden = true;
+      }
+
+      //Minimum bérlet kezdete mai dátum
+      startInput.min = currentDate;
 
       //Tömbökben keresés
-      var passesResult = passes_array.find(item => item.userId == id && item.end >= currentDate );
+      var passesResult = passes_array.find(item => item.userId == id && item.end >= currentDate);
       var priceResult = price_array.find(item => item.id == passesResult.typeId);
       var discountResult = discount_array.find(item => item.id == passesResult.discountId);
 
@@ -91,7 +120,7 @@ function inputType(){
   //Tömbön végigfutás, típus beírás
   price_array.forEach(type => {
     let option = document.createElement("option");
-    option.value = type.id;
+    option.value = type.days;
     option.text = type.type;
     typeInput.add(option);
   });
@@ -99,7 +128,7 @@ function inputType(){
   //Típus változásának figyelése
   typeInput.addEventListener("change", function() {
     const selectedTypeId = typeInput.value;
-    selectedType = price_array.find(type => type.id == selectedTypeId);
+    selectedType = price_array.find(type => type.days == selectedTypeId);
     if (selectedType) {
       priceInput.value = selectedType.price;
     }
@@ -118,16 +147,45 @@ function inputDiscount(){
     discountInput.add(option);
   });
 
-  //Discount változásának figyelése
+
+
+
+  //Eventek változásának figyelése
     addEventListener("change", function() {
 
-    const selectedDiscountId = discountInput.value;
-    selectedDiscount = discount_array.find(discount => discount.id == selectedDiscountId);
+      var date = new Date(startInput.value);
+      date.setDate(date.getDate() + selectedType.days);
+      
+      //Év
+      var selectedYear = date.getFullYear();
+
+      //Hónap
+      var selectedMonthCheck = (date.getMonth()+1)
+      if(selectedMonthCheck < 10) {
+        var selectedMonth = "0" + (date.getMonth()+1)
+      } else {
+        var selectedMonth = (date.getMonth()+1)
+      }
+
+      //Nap
+      var selectedDayCheck = date.getDate();
+      if(selectedDayCheck < 10) {
+        var selectedDay = "0" + date.getDate();
+      } else {
+        var selectedDay = date.getDate();
+      }
+
+      var datePlus = selectedYear + "-" + selectedMonth + "-" + selectedDay;
+      endInput.value = datePlus;
+
+
+      const selectedDiscountId = discountInput.value;
+      selectedDiscount = discount_array.find(discount => discount.id == selectedDiscountId);
     
-    if (typeInput.value && selectedDiscount) {
-      percentInput.value = selectedDiscount.percent;
-      priceCalc(); 
-    }
+      if (typeInput.value && selectedDiscount) {
+        percentInput.value = selectedDiscount.percent;
+        priceCalc(); 
+      }
   });
 }
 
@@ -149,19 +207,31 @@ function priceCalc() {
 
 //Bérlet vétel gomb 
 buyButton.addEventListener('click', () => {
-  console.log('Mentés...');
-  console.log("id: " + id);
-  console.log("startInput.value: " + startInput.value);
-  console.log("endInput.value: " + endInput.value);
-  console.log("selectedType.id: " + selectedType.id);
-  console.log("selectedDiscount.id: " + selectedDiscount.id);
+  try {
+    console.log('Mentés...');
+    console.log("id: " + id);
+    console.log("startInput.value: " + startInput.value);
+    console.log("endInput.value: " + endInput.value);
+    console.log("selectedType.id: " + selectedType.id);
+    console.log("selectedDiscount.id: " + selectedDiscount.id);
 
-  createPass();
+    if (startInput.value >= currentDate) {
+        createPass();
+    } else {
+        alert("Hibás dátum!")
+    }
+    
+  } catch (error) {
+    
+    alert("Hiányos vagy hibás adatok. Kérjük próbálja meg újra!");
+    location.reload();
+  }
+    
 });
 
 
 
-//Bérlet modal feltöltő funkció
+//Bérlet adatbázisba feltöltés funkció
 function createPass() {
   let endpoint = 'pass'
   let url = server + endpoint;

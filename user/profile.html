@@ -148,7 +148,7 @@
     </div>
     <!-- Hero End -->
 
-    <!-- Testimonial Start -->
+    <!-- Profile testimonial Start -->
     <div class="container">
       <div class="row">
         <div class="col-sm">
@@ -174,10 +174,10 @@
                     <input type="text" id="address" name="address" readonly/>
                     <br />
                     <label for="email">Email:</label>
-                    <input type="text" id="email" name="email" readonly />
+                    <input type="text" id="email" name="email" readonly />           
                   </div>
 
-                  <!-- edit Modal -->
+                  <!-- edit profile Modal -->
                   <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
@@ -222,37 +222,38 @@
         <!-- Testimonial End -->
 
         <!-- Bérletes -->
-        
-        <div class="col-sm">
+        <div class="col-sm" >
           <div class="container-fluid p-0" style="margin: 90px 0">
             <div class="row justify-content-md-center">
               <div class="col-lg-6" style="min-height: 500px">
                 <div class="position-relative h-100">
                   <div id="responseContainer"></div>
                   <div class="profile-info">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editPassModal">Új bérlet?</button>
+                    <button type="button" class="btn btn-primary " data-bs-toggle="modal" id="editPassModalButton" data-bs-target="#editPassModal">Új bérlet?</button>
                     
-                    <h1>Bérlet</h1>
-                    <label for="type">Típus:</label>
-                    <input type="text" id="type" name="type" readonly />
-                    <br />
-                    <label for="discount">Kedvezmény:</label>
-                    <input type="text" id="discount" name="discount" readonly />
-                    <br />
-                    <label for="percent">(%):</label>
-                    <input type="text" id="percent" name="percent" readonly />
-                    <br />
-                    <label for="start">Kezdete:</label>
-                    <input type="date" id="start" name="start" readonly />
-                    <br />
-                    <label for="end">Vége:</label>
-                    <input type="date" id="end" name="end" readonly />
-                    <br />
-                    <label for="price">Ár:</label>
-                    <input type="text" id="price" name="price" readonly />
+                    <h1 id="passH1"></h1>
+                    <div class="profile-info" id="passHider">
+                      <label for="type">Típus:</label>
+                      <input type="text" id="type" name="type" readonly />
+                      <br />
+                      <label for="discount">Kedvezmény:</label>
+                      <input type="text" id="discount" name="discount" readonly />
+                      <br />
+                      <label for="percent">(%):</label>
+                      <input type="text" id="percent" name="percent" readonly />
+                      <br />
+                      <label for="start">Kezdete:</label>
+                      <input type="date" id="start" name="start" readonly />
+                      <br />
+                      <label for="end">Vége:</label>
+                      <input type="date" id="end" name="end" readonly />
+                      <br />
+                      <label for="price">Ár:</label>
+                      <input type="text" id="price" name="price" readonly />
+                    </div>
                   </div>
-
-                  <!-- edit Modal -->
+                
+                  <!-- edit bérlet Modal -->
                   <div class="modal fade" id="editPassModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
@@ -263,7 +264,7 @@
                         <div class="modal-body">
                           <form>
                             <div class="mb-3">
-                                <label for="edited_type" class="form-label">Típus:</label>
+                                <label for="edited_type" class="form-label">Bérlet típus:</label>
                                 <select class="form-select" aria-label="Default select example" id="edited_type">
                                     <option selected>Kérjük válasszon típust</option>
                                     <!-- <option id="typeSelect"></option>                    -->
@@ -274,7 +275,7 @@
                               <input type="text" class="form-control" id="edited_price" readonly/>
                             </div>
                             <div class="mb-3">
-                                <label for="edited_discount" class="form-label">Kedvezmény:</label>
+                                <label for="edited_discount" class="form-label">Kedvezmény típus:</label>
                                 <select class="form-select" aria-label="Default select example" id="edited_discount">
                                     <option selected>Kérjük válasszon kedvezményt</option>   
                                     <!-- <option id="discountSelect"></option>                    -->
@@ -285,12 +286,12 @@
                               <input type="text" class="form-control" id="edited_percent" readonly/>
                             </div>
                             <div class="mb-3">
-                              <label for="edited_start" class="form-label">Kezdete:</label>
-                              <input type="date" class="form-control" id="edited_start"/>
+                              <label for="edited_start" class="form-label">Bérlet kezdete:</label>
+                              <input type="date" class="form-control disabled" min="" id="edited_start"/>
                             </div>
                             <div class="mb-3">
-                              <label for="edited_end" class="form-label">Vége:</label>
-                              <input type="date" class="form-control" id="edited_end" />
+                              <label for="edited_end" class="form-label">Bérlet lejárta:</label>
+                              <input type="date" class="form-control" id="edited_end" readonly/>
                             </div>
                             <div class="mb-3">
                               <label for="edited_endprice" class="form-label">Végösszeg:</label>

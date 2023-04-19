@@ -31,7 +31,6 @@ function getPasstypes() {
 
         var price_array = result;
         localStorage.setItem('price_array',JSON.stringify(price_array));
-        console.log(price_array);
 
         renderTable(result);       
     })
@@ -155,7 +154,6 @@ function deletePasstype(id) {
     })
     .then(response => response.json())
     .then(result => {
-        console.log('Törölve');
     })
     .catch(error => {
         console.log('Hiba! A törlés sikertelen!');
@@ -185,7 +183,6 @@ function makeEditButton(passtype) {
 }
 
 saveButton.addEventListener('click', () => {
-    console.log('Mentés...');
     actualTr.childNodes[2].textContent = edited_price.value;
     
     updatepasstype();
@@ -208,7 +205,6 @@ function updatepasstype() {
     })
     .then(response => response.json())
     .then(result => {
-        console.log("frissítve");
     })
     .catch(error => {
         console.log('Hiba! A frissítés sikertelen!');

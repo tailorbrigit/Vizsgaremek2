@@ -31,7 +31,6 @@ const registerUser = () => {
     })
     .then(response => response.json())
     .then(result => {
-        console.log(result);
         nameReg.value = '';
         emailReg.value = '';
         passwordReg.value = '';

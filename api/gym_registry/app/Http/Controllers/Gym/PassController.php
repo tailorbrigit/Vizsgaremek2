@@ -18,26 +18,6 @@ class PassController extends BaseController
         return $this->sendResponse($passes);
     }
 
-    public function showPass($id){
-        $pass = Pass::find($id);
-
-        if(is_null($pass)){
-            return $this->sendError("Bérlet nem létezik");
-        }
-        return $this->sendResponse($pass);
-    }
-
-    // public function showIdPass(User $user,$id){
-    //     $this->authorize("show-pass");
-        
-    //     if(Auth::check() && Auth::user()->role == true){
-    //         $user = User::find($id);
-    //     }else{
-    //         $user = Auth::user();
-    //     }
-    //     return $this->sendResponse($user);
-    // }
-
     public function createPass(Request $request){
         $pass = $request->all();
         $validator = Validator::make($pass,[

@@ -31,7 +31,6 @@ function getDiscounts() {
         
         var discount_array = result;
         localStorage.setItem('discount_array',JSON.stringify(discount_array));
-        console.log(discount_array);
 
         renderTable(result);
     })
@@ -155,7 +154,6 @@ function deleteDiscount(id) {
     })
     .then(response => response.json())
     .then(result => {
-        console.log('Törölve');
     })
     .catch(error => {
         console.log('Hiba! A törlés sikertelen!');
@@ -185,7 +183,6 @@ function makeEditButton(discount) {
 }
 
 saveButton.addEventListener('click', () => {
-    console.log('Mentés...');
     actualTr.childNodes[2].textContent = edited_percent.value;
     
     updateDiscount();
@@ -208,7 +205,6 @@ function updateDiscount() {
     })
     .then(response => response.json())
     .then(result => {
-        console.log("frissítve");
     })
     .catch(error => {
         console.log('Hiba! A frissítés sikertelen!');
