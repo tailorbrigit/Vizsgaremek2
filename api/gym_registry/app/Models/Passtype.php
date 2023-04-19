@@ -12,6 +12,7 @@ class Passtype extends Model
     protected $fillable = [
         'type',
         'price',
+        'days'
     ];
 
     public $timestamps = false;

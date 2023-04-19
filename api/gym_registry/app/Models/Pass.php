@@ -13,7 +13,8 @@ class Pass extends Model
         'start',
         'end',
         'typeId',
-        'discountId'
+        'discountId',
+        'userId'
     ];
 
     public $timestamps = false;

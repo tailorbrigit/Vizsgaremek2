@@ -15,13 +15,17 @@ return new class extends Migration
     {
         Schema::create('passes', function (Blueprint $table) {
             $table->id();
-            $table->date("start");
-            $table->date("end");
+            $table->date("start")->nullable();
+            $table->date("end")->nullable();
             
-            $table->unsignedBigInteger("typeId");
+            $table->unsignedBigInteger("typeId")->nullable();
             $table->foreign("typeId")->references("id")->on("passtypes")->cascadeOnDelete()->cascadeOnUpdate();
+
             $table->unsignedBigInteger("discountId")->nullable();
             $table->foreign("discountId")->references("id")->on("discounts")->cascadeOnDelete()->cascadeOnUpdate();
+            
+            $table->unsignedBigInteger("userId")->nullable();
+            $table->foreign("userId")->references("id")->on("users")->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

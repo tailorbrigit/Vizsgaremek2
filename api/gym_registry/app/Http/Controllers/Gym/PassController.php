@@ -14,34 +14,38 @@ use Illuminate\Support\Facades\DB;
 class PassController extends BaseController
 {
     public function indexPass(){
-        $this->authorize("index-passes");
-        $passes = Passes::all();
+        $passes = Pass::all();
         return $this->sendResponse($passes);
     }
 
-    public function showPass(User $user){
-        $user = Auth::user();
-        return $this->sendResponse($user);
+    public function showPass($id){
+        $pass = Pass::find($id);
+
+        if(is_null($pass)){
+            return $this->sendError("Bérlet nem létezik");
+        }
+        return $this->sendResponse($pass);
     }
 
-    public function showIdPass(User $user,$id){
-        $this->authorize("show-pass");
+    // public function showIdPass(User $user,$id){
+    //     $this->authorize("show-pass");
         
-        if(Auth::check() && Auth::user()->role == true){
-            $user = User::find($id);
-        }else{
-            $user = Auth::user();
-        }
-        return $this->sendResponse($user);
-    }
+    //     if(Auth::check() && Auth::user()->role == true){
+    //         $user = User::find($id);
+    //     }else{
+    //         $user = Auth::user();
+    //     }
+    //     return $this->sendResponse($user);
+    // }
 
     public function createPass(Request $request){
-        $this->authorize("manage-pass");
         $pass = $request->all();
         $validator = Validator::make($pass,[
             'start' => "required",
             'end' => "required",
-            'typeId' => "required"
+            'typeId' => "required",
+            'discountId' => "required",
+            'userId' => "required"
         ]);
         if($validator->fails()){
             return $this->sendError($validator,"Érvénytelen bemenet");
@@ -52,12 +56,15 @@ class PassController extends BaseController
     }
 
     public function updatePass(Request $request, $id){
-        $this->authorize("manage-pass");
+        $pass= Auth::user();
+
         $pass = $request->all();
         $validator = Validator::make($pass,[
             'start' => "required",
             'end' => "required",
-            'typeId' => "required"
+            'typeId' => "required",
+            'discountId' => "required",
+            'userId' => "required",
         ]);
 
         if($validator->fails()){
@@ -70,7 +77,6 @@ class PassController extends BaseController
     }
 
     public function deletePass($id){
-        $this->authorize("manage-pass");
         Pass::destroy($id);
         return $this->sendResponse("Bérlet törölve");
     }

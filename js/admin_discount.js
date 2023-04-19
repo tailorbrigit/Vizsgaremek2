@@ -28,6 +28,11 @@ function getDiscounts() {
     fetch(url)
     .then( response => response.json())
     .then( result => {
+        
+        var discount_array = result;
+        localStorage.setItem('discount_array',JSON.stringify(discount_array));
+        console.log(discount_array);
+
         renderTable(result);
     })
     .catch(error => {

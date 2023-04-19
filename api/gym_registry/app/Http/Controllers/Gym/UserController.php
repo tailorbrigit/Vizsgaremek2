@@ -65,7 +65,6 @@ class UserController extends BaseController
     }
 
     public function destroy(User $user, $id){
-        $this->authorize("delete-users");
         $user = User::find($id);
         if(is_null($user)){
             return $this->sendError("Felhasználó nem létezik");

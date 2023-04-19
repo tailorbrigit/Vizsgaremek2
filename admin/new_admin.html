@@ -1,3 +1,10 @@
+<script>
+    if (localStorage.getItem('userRole') !== '1') {
+        window.location.href = '../login.html';
+    }
+
+</script>
+
 <!DOCTYPE html>
 <html lang="hu">
 
@@ -9,7 +16,7 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="../img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -18,16 +25,16 @@
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="lib/flaticon/font/flaticon.css" rel="stylesheet">
+    <link href="../lib/flaticon/font/flaticon.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -35,7 +42,7 @@
     <div class="container-fluid bg-dark px-0">
         <div class="row gx-0">
             <div class="col-lg-3 bg-dark d-none d-lg-block">
-                <a href="index.html" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
+                <a href="admin.html" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
                     <h1 class="m-0 display-4 text-primary text-uppercase">Gymster</h1>
                 </a>
             </div>
@@ -72,7 +79,7 @@
                     </div>
                 </div>
                 <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0 px-lg-5">
-                    <a href="index.html" class="navbar-brand d-block d-lg-none">
+                    <a href="admin.html" class="navbar-brand d-block d-lg-none">
                         <h1 class="m-0 display-4 text-primary text-uppercase">Gymster</h1>
                     </a>
                     <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -80,22 +87,14 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.html" class="nav-item nav-link">Kezdőlap</a>
-                            <a href="about.html" class="nav-item nav-link">Rólunk</a>
-                            <a href="class.html" class="nav-item nav-link">Osztályok</a>
+                            <a href="admin.html" class="nav-item nav-link">Kezdőlap</a>
+                            <a href="class.html" class="nav-item nav-link">Csoportok</a>
                             <a href="team.html" class="nav-item nav-link">Edzőink</a>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Oldalak</a>
-                                <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="blog.html" class="dropdown-item">Blog</a>
-                                    <a href="detail.html" class="dropdown-item">Blog</a>
-                                    <a href="testimonial.html" class="dropdown-item">Ajánlólevél</a>
-                                </div>
-                            </div>
-                            <a href="contact.html" class="nav-item nav-link">Kapcsolat</a>
-                            <a href="prices.html" class="nav-item nav-link active">Áraink</a>
-                            <a href="register.html"class="nav-item nav-link">Regisztráció</a>
-                            <a href="login.html"class="nav-item nav-link">Bejelentkezés</a>
+                            <a href="prices.html" class="nav-item nav-link">Áraink</a>
+                            <a href="discount.html" class="nav-item nav-link">Kedvezmények</a>
+                            <a href="new_admin.html" class="nav-item nav-link active">Admin felvétele</a>
+                            <a href="profile.html" class="nav-item nav-link">Profil</a>
+                            <a href="#" class="nav-item nav-link" onclick="logout()">Kijelentkezés</a>
                         </div>
                     </div>
                 </nav>
@@ -109,9 +108,9 @@
     <div class="container-fluid bg-primary p-5 bg-hero mb-5">
         <div class="row py-5">
             <div class="col-12 text-center">
-                <h1 class="display-2 text-uppercase text-white mb-md-4">Áraink</h1>
-                <a href="index.html" class="btn btn-primary py-md-3 px-md-5 me-3">Kezdőlap</a>
-                <a href="prices.html" class="btn btn-light py-md-3 px-md-5">Áraink</a>
+                <h1 class="display-2 text-uppercase text-white mb-md-4">Felvétel</h1>
+                <a href="admin.html" class="btn btn-primary py-md-3 px-md-5 me-3">Kezdőlap</a>
+                <a href="profile.html" class="btn btn-light py-md-3 px-md-5">Profil</a>
             </div>
         </div>
     </div>
@@ -121,17 +120,50 @@
     <!-- Testimonial Start -->
     <div class="container-fluid p-0" style="margin: 90px 0;">
         <div class="row g-0">
-            <div class="col-lg-6" style="min-height: 500px;">
-                <div class="position-relative h-100">
-                    <div class="row justify-content-around">
-                        <div class="col-4">
-                            <h3>Bérlet/Ára</h3>
-                            <table id="passtypeTable" class="table mt-2"></table>
+            <div class="position-relative h-100">
+                <div align="center">
+                    <div style="width:100%">
+
+                        <div class="admin">
+                            <h1>Moderátor felvétele</h1>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Hozzáad</button>
+                            
+                            <table id="adminTable" class="table table-striped mt-2"></table>
+                        
+                            <!--add Modal -->
+                            <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="exampleModalLabel">Moderátor hozzáadása</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                            
+                                        <form>
+                                            <div class="mb-3">
+                                          <label for="name" class="form-label">Név:</label>
+                                          <input type="text" class="form-control" id="name">
+                                          
+                                          <label for="email" class="form-label">Email:</label>
+                                          <input type="text" class="form-control" id="email">
+
+                                          <label for="password" class="form-label">Jelszó:</label>
+                                          <input type="password" class="form-control" id="password">
+                                        </div>
+                                    </form>
+                                    
+                                    </div>
+                                    <div class="modal-footer">
+                                        <h3 style="color: gray" class="modal-title fs-5">"@mod.com" közelező email cím!</h3>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezár</button>
+                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="addButton">Ment</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                         </div>
-                        <div class="col-4">
-                            <h3>Kedvezmények</h3>
-                            <table id="discountTable" class="table mt-2"></table>
-                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -139,7 +171,6 @@
     </div>
     <!-- Testimonial End -->
     
-
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-secondary px-5 mt-5">
         <div class="row gx-5">
@@ -169,23 +200,17 @@
                     <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
                         <h4 class="text-uppercase text-light mb-4">Gyors linkek</h4>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="index.html"><i class="bi bi-arrow-right text-primary me-2"></i>Kezdőlap</a>
-                            <a class="text-secondary mb-2" href="about.html"><i class="bi bi-arrow-right text-primary me-2"></i>Rólunk</a>
+                            <a class="text-secondary mb-2" href="admin.html"><i class="bi bi-arrow-right text-primary me-2"></i>Kezdőlap</a>
                             <a class="text-secondary mb-2" href="class.html"><i class="bi bi-arrow-right text-primary me-2"></i>Class Schedule</a>
                             <a class="text-secondary mb-2" href="team.html"><i class="bi bi-arrow-right text-primary me-2"></i>Edzőink</a>
-                            <a class="text-secondary mb-2" href="blog.html"><i class="bi bi-arrow-right text-primary me-2"></i>Legutóbbi blog</a>
-                            <a class="text-secondary" href="contact.html"><i class="bi bi-arrow-right text-primary me-2"></i>Lépj kapcsolatba velünk!</a>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
                         <h4 class="text-uppercase text-light mb-4">Népszerű Linkek</h4>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="index.html"><i class="bi bi-arrow-right text-primary me-2"></i>Kezdőlap</a>
-                            <a class="text-secondary mb-2" href="about.html"><i class="bi bi-arrow-right text-primary me-2"></i>Rólunk</a>
+                            <a class="text-secondary mb-2" href="admin.html"><i class="bi bi-arrow-right text-primary me-2"></i>Kezdőlap</a>
                             <a class="text-secondary mb-2" href="class.html"><i class="bi bi-arrow-right text-primary me-2"></i>Class Schedule</a>
                             <a class="text-secondary mb-2" href="team.html"><i class="bi bi-arrow-right text-primary me-2"></i>Edzőink</a>
-                            <a class="text-secondary mb-2" href="blog.html"><i class="bi bi-arrow-right text-primary me-2"></i>Legutóbbi blog</a>
-                            <a class="text-secondary" href="contact.html"><i class="bi bi-arrow-right text-primary me-2"></i>Lépj kapcsolatba velünk!</a>
                         </div>
                     </div>
                 </div>
@@ -229,15 +254,15 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../lib/easing/easing.min.js"></script>
+    <script src="../lib/waypoints/waypoints.min.js"></script>
+    <script src="../lib/counterup/counterup.min.js"></script>
+    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
-    <script src="js/logout.js"></script>
-    <script src="js/user_prices.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/add_admin.js"></script>
+    <script src="../js/logout.js"></script>
 </body>
 
 </html>

@@ -14,10 +14,12 @@ Route::group(["middleware" => ["auth:sanctum"]], function() {
     
     Route::put("/user/{id}",[UserController::class, "update"]);
 
-    Route::get("/userPass",[PassController::class,"showPass"]);
+    // Route::get("/userPass",[PassController::class,"showPass"]);
+
+    Route::put("/pass/{id}",[PassController::class,"updatePass"]);
+    Route::get("/userPass/{id}",[PassController::class,"showPass"]);
     
     //Admin
-    Route::get("/userPass/{id}",[PassController::class,"showIdPass"]);
     
     Route::delete("/admin/user/{id}", [UserController::class, "destroy"]);
     Route::post("/admin/user",[UserController::class,"addAdmin"]);
@@ -28,7 +30,6 @@ Route::group(["middleware" => ["auth:sanctum"]], function() {
     
     Route::get("/passes",[PassController::class,"indexPass"]);
     Route::post("/pass",[PassController::class,"createPass"]);
-    Route::put("/pass/{id}",[PassController::class,"updatePass"]);
     Route::delete("/pass/{id}",[PassController::class,"deletePass"]);
     
     Route::post("/passtype",[PasstypeController::class,"createPassType"]);

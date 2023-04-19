@@ -7,6 +7,8 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\CityRegionSeeder;
 use Database\Seeders\RegionSeeder;
 use Database\Seeders\AdminSeeder;
+use Database\Seeders\PasstypeSeeder;
+use Database\Seeders\DiscountSeeder;
 use App\Models\CityRegion;
 use App\Models\Region;
 use Illuminate\Support\Facades\Schema;
@@ -25,13 +27,17 @@ class DatabaseSeeder extends Seeder
         Schema::disableForeignKeyConstraints();
             DB::table("regions")->truncate();
             DB::table("city_regions")->truncate();
-            DB::table("users")->where("name", "=", "admin")->delete();
+            DB::table("users")->truncate();
+            DB::table("passtypes")->truncate();
+            DB::table("discounts")->truncate();
         Schema::enableForeignKeyConstraints();
 
         $this->call([
             RegionSeeder::class,
             CityRegionSeeder::class,
-            AdminSeeder::class
+            AdminSeeder::class,
+            PasstypeSeeder::class,
+            DiscountSeeder::class
         ]);
 
     }

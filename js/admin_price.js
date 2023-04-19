@@ -28,7 +28,12 @@ function getPasstypes() {
     fetch(url)
     .then( response => response.json())
     .then( result => {
-        renderTable(result);
+
+        var price_array = result;
+        localStorage.setItem('price_array',JSON.stringify(price_array));
+        console.log(price_array);
+
+        renderTable(result);       
     })
     .catch(error => {
         console.log('Hiba! A lekérdezés sikertelen!');

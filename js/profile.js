@@ -44,7 +44,7 @@ function UserProfile(){
         phoneInput2.value = result.phone;
         birthInput2.value = result.birth;
         addressInput2.value = result.address;
-        console.log("beírva");
+        console.log("Meglévő profiladatok betöltve!");
       })
       .catch(error => {
         console.error('Error fetching user data:', error);

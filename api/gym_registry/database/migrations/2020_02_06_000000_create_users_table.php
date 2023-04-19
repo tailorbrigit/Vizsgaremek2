@@ -24,9 +24,6 @@ return new class extends Migration
             $table->string('password');
             
             $table->boolean("role")->default(0);
-            
-            $table->unsignedBigInteger("passId")->nullable();
-            $table->foreign("passId")->references("id")->on("passes")->cascadeOnDelete()->cascadeOnUpdate();
 
             $table->unsignedBigInteger("city_regionId")->nullable();
             $table->foreign("city_regionId")->references("id")->on("city_regions")->cascadeOnDelete()->cascadeOnUpdate();
