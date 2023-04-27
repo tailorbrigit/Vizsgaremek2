@@ -7,6 +7,7 @@ const addButton = document.querySelector("#addButton");
 const passtypeTable = document.querySelector("#passtypeTable");
 const passtypeType = document.querySelector("#type");
 const passtypePrice = document.querySelector("#price");
+const passtypeDays = document.querySelector("#days");
 const edited_id = document.querySelector("#edited_id");
 const edited_price = document.querySelector("#edited_price");
 
@@ -32,7 +33,7 @@ function getPasstypes() {
         var price_array = result;
         localStorage.setItem('price_array',JSON.stringify(price_array));
 
-        renderTable(result);       
+        renderTable(result);
     })
     .catch(error => {
         console.log('Hiba! A lekérdezés sikertelen!');
@@ -48,6 +49,7 @@ function renderTable(passtypes) {
         let tdId = document.createElement('td');
         let tdType = document.createElement('td');
         let tdPrice = document.createElement('td');
+        let tdDays = document.createElement('td');
 
         let tdButton = document.createElement('td');
         let delBtn = makeDelButton(passtype.id);
@@ -56,6 +58,7 @@ function renderTable(passtypes) {
         tr.appendChild(tdId);
         tr.appendChild(tdType);
         tr.appendChild(tdPrice);
+        tr.appendChild(tdDays);
 
         tr.appendChild(tdButton);
         tdButton.appendChild(delBtn);
@@ -65,7 +68,8 @@ function renderTable(passtypes) {
     
         tdId.textContent = passtype.id;
         tdType.textContent = passtype.type;        
-        tdPrice.textContent = passtype.price;        
+        tdPrice.textContent = passtype.price;      
+        tdDays.textContent = passtype.days;  
     });
 }
 
@@ -97,7 +101,8 @@ function addPasstype() {
     let url = server + endpoint;    
     let passtype = {
         type: passtypeType.value,
-        price: passtypePrice.value
+        price: passtypePrice.value,
+        days: passtypeDays.value
     };
     
     fetch(url, {
@@ -112,7 +117,9 @@ function addPasstype() {
     .then(result => {
         passtypeType.value = '';
         passtypePrice.value = '';
+        passtypeDays.value = '';
         addPasstypeToTable(result);
+        location.reload();
     });
 
 }
@@ -122,6 +129,7 @@ function addPasstypeToTable(passtype) {
     let tdId = document.createElement('td');
     let tdType = document.createElement('td');
     let tdPrice = document.createElement('td');
+    let tdDays = document.createElement('td');
     let tdButton = document.createElement('td');
     
     let delBtn = makeDelButton(passtype.id);
@@ -130,6 +138,7 @@ function addPasstypeToTable(passtype) {
     tr.appendChild(tdId);
     tr.appendChild(tdType);
     tr.appendChild(tdPrice);
+    tr.appendChild(tdDays);
     tr.appendChild(tdButton);
     
     tdButton.appendChild(delBtn);
@@ -140,6 +149,7 @@ function addPasstypeToTable(passtype) {
     tdId.textContent = passtype.id;
     tdType.textContent = passtype.type;
     tdPrice.textContent = passtype.price;
+    tdDays.textContent = passtype.days;
 }
 
 function deletePasstype(id) {
@@ -154,6 +164,7 @@ function deletePasstype(id) {
     })
     .then(response => response.json())
     .then(result => {
+        location.reload();
     })
     .catch(error => {
         console.log('Hiba! A törlés sikertelen!');
@@ -205,6 +216,7 @@ function updatepasstype() {
     })
     .then(response => response.json())
     .then(result => {
+        location.reload();
     })
     .catch(error => {
         console.log('Hiba! A frissítés sikertelen!');

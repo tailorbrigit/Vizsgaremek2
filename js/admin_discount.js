@@ -113,6 +113,7 @@ function addDiscount() {
         discountType.value = '';
         discountPercent.value = '';
         addDiscountToTable(result);
+        location.reload();
     });
 
 }
@@ -154,6 +155,7 @@ function deleteDiscount(id) {
     })
     .then(response => response.json())
     .then(result => {
+        location.reload();
     })
     .catch(error => {
         console.log('Hiba! A törlés sikertelen!');
@@ -205,6 +207,7 @@ function updateDiscount() {
     })
     .then(response => response.json())
     .then(result => {
+        location.reload();
     })
     .catch(error => {
         console.log('Hiba! A frissítés sikertelen!');

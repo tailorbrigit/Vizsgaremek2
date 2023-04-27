@@ -209,11 +209,6 @@ function priceCalc() {
 buyButton.addEventListener('click', () => {
   try {
     console.log('Mentés...');
-    console.log("id: " + id);
-    console.log("startInput.value: " + startInput.value);
-    console.log("endInput.value: " + endInput.value);
-    console.log("selectedType.id: " + selectedType.id);
-    console.log("selectedDiscount.id: " + selectedDiscount.id);
 
     if (startInput.value >= currentDate) {
         createPass();
@@ -254,13 +249,10 @@ function createPass() {
     })
     .then(response => response.json())
     .then(result => {
-      console.log(result);
-      console.log("frissítve");
       alert("Bérlet sikeresen frissítve!");
       location.reload();
     })
     .catch(error => {
-      console.log('Hiba! A frissítés sikertelen!');
       alert("Bérletedet nem sikerült frissíteni!");
       location.reload();
       console.log(error);

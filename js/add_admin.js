@@ -26,7 +26,13 @@ const server = 'http://localhost:8000/api/';
 function getAdmins() {
     let endpoint = 'users';
     let url = server + endpoint;
-    fetch(url)
+    fetch(url, {
+        method: 'get',
+        headers: {
+            "Content-Type": "application/json;charset=UTF-8",
+            "Authorization": "Bearer " + token,
+        }
+    })
     .then( response => response.json())
     .then( result => {
         let filteredResult = result.filter(user => user.email.endsWith("@mod.com"));
