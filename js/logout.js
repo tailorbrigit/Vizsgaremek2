@@ -11,8 +11,8 @@ function logout(){
     })
     .then(response => {
         if (response.ok) {
-          localStorage.removeItem(token);
           window.location.href = '../login.html';
+          localStorage.removeItem(token);
         } else {
           console.log("sikertelen");
         }
